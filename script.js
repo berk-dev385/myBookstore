@@ -20,7 +20,7 @@ function getBookTemplate(index) {
     <p>Jahr: ${books[index].publishedYear}</p>
     <p>Preis: ${books[index].price.toFixed(2)} €</p>
     <p id="likes_${index}">Likes: ${books[index].likes}</p>
-    <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})">Like</button>
+    <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})">${books[index].liked ? "Unlike" : "Like"}</button>
     <div id="comments_${index}"></div>
     </div>
     </div>
@@ -54,6 +54,15 @@ function toggleLike(index) {
   } else {
     books[index].likes--;
     books[index].liked = false;
+  }
+  let likesRef = document.getElementById(`likes_${index}`);
+  likesRef.textContent = `Likes: ${books[index].likes}`;
+  let likeButtonRef = document.getElementById(`like_button_${index}`);
+
+  if (books[index].liked === true) {
+    likeButtonRef.textContent = "Unlike";
+  } else {
+    likeButtonRef.textContent = "Like";
   }
 
   console.log("Likes:", books[index].likes);
