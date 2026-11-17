@@ -19,6 +19,8 @@ function getBookTemplate(index) {
     <p>Genre: ${books[index].genre}</p>
     <p>Jahr: ${books[index].publishedYear}</p>
     <p>Preis: ${books[index].price.toFixed(2)} €</p>
+    <p id="likes_${index}">Likes: ${books[index].likes}</p>
+    <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})">Like</button>
     <div id="comments_${index}"></div>
     </div>
     </div>
@@ -38,10 +40,24 @@ function renderComments(index) {
   ) {
     let commentElement = document.createElement("p");
 
-    commentElement.textContent = books[index].comments[commentIndex].comment;
+    commentElement.textContent = `${books[index].comments[commentIndex].name}: ${books[index].comments[commentIndex].comment}`;
 
     commentsRef.appendChild(commentElement);
   }
+}
+
+// 4. Toggle like for a single book
+function toggleLike(index) {
+  if (books[index].liked === false) {
+    books[index].likes++;
+    books[index].liked = true;
+  } else {
+    books[index].likes--;
+    books[index].liked = false;
+  }
+
+  console.log("Likes:", books[index].likes);
+  console.log("Liked:", books[index].liked);
 }
 
 // 4. Start rendering books and comments
