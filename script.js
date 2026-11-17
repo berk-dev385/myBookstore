@@ -22,6 +22,11 @@ function getBookTemplate(index) {
     <p id="likes_${index}">Likes: ${books[index].likes}</p>
     <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})">${books[index].liked ? "Unlike" : "Like"}</button>
     <div id="comments_${index}"></div>
+
+    <input type="text" id="comment_name_${index}" class="form-control mb-2" placeholder="Dein Name">
+    <textarea id="comment_text_${index}" class="form-control mb-2" placeholder="Dein Kommentar"></textarea>
+    <button type="button" class="btn btn-primary" onclick="addComment(${index})">Kommentar hinzufügen</button>
+
     </div>
     </div>
     `;
@@ -67,6 +72,29 @@ function toggleLike(index) {
 
   console.log("Likes:", books[index].likes);
   console.log("Liked:", books[index].liked);
+}
+
+// 5. Add a new comment to a book
+function addComment(index) {
+  let nameRef = document.getElementById(`comment_name_${index}`);
+  let commentRef = document.getElementById(`comment_text_${index}`);
+
+  if (nameRef.value.trim() === "" || commentRef.value.trim() === "") {
+    alert("Bitte Name und Kommentar eingeben.");
+    return;
+  }
+
+  let newComment = {
+    name: nameRef.value,
+    comment: commentRef.value,
+  };
+
+  books[index].comments.push(newComment);
+
+  renderComments(index);
+
+  nameRef.value = "";
+  commentRef.value = "";
 }
 
 // 4. Start rendering books and comments
