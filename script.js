@@ -74,6 +74,29 @@ function toggleLike(index) {
   console.log("Liked:", books[index].liked);
 }
 
+// 5. Add a new comment to a book
+function addComment(index) {
+  let nameRef = document.getElementById(`comment_name_${index}`);
+  let commentRef = document.getElementById(`comment_text_${index}`);
+
+  if (nameRef.value.trim() === "" || commentRef.value.trim() === "") {
+    alert("Bitte Name und Kommentar eingeben.");
+    return;
+  }
+
+  let newComment = {
+    name: nameRef.value,
+    comment: commentRef.value,
+  };
+
+  books[index].comments.push(newComment);
+
+  renderComments(index);
+
+  nameRef.value = "";
+  commentRef.value = "";
+}
+
 // 4. Start rendering books and comments
 renderBooks();
 
