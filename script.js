@@ -22,6 +22,11 @@ function getBookTemplate(index) {
     <p id="likes_${index}">Likes: ${books[index].likes}</p>
     <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})">${books[index].liked ? "Unlike" : "Like"}</button>
     <div id="comments_${index}"></div>
+
+    <input type="text" id="comment_name_${index}" class="form-control mb-2" placeholder="Dein Name">
+    <textarea id="comment_text_${index}" class="form-control mb-2" placeholder="Dein Kommentar"></textarea>
+    <button type="button" class="btn btn-primary" onclick="addComment(${index})">Kommentar hinzufügen</button>
+
     </div>
     </div>
     `;
