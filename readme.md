@@ -1,47 +1,90 @@
 # Bookstore 385
 
-Das ist mein Bookstore-Projekt aus dem JavaScript-Modul der Developer Akademie. Ich baue die Anwendung Schritt für Schritt auf, um das Arbeiten mit Arrays, Objekten, Funktionen und dem DOM zu üben.
+Mein Bookstore-Projekt aus dem JavaScript-Modul der Developer Akademie.
 
-Als Beispieldaten verwende ich neun Bücher zu Logistik, agilem Management, Luftfahrt und Projektmanagement. Die Buchtitel, Autorennamen und Kommentare sind frei erfunden.
+In diesem Projekt übe ich den Umgang mit JavaScript-Arrays, Objekten, Funktionen, Schleifen und der DOM-Manipulation. Ziel ist es, eine einfache Buchübersicht zu erstellen, in der Bücher angezeigt, geliked und kommentiert werden können.
 
-## Aktueller Stand (17.11.2026)
+## Projektbeschreibung
 
-- [x] Projektdateien erstellt und miteinander verbunden
-- [x] Buchdaten aus `db.js` eingebunden
-- [x] Neun Bücher mit Titel, Autor, Genre, Erscheinungsjahr und Preis dargestellt
-- [x] Buchkarten mit Bootstrap-Klassen aufgebaut
-- [x] Vorhandene Kommentartexte für jedes Buch dargestellt
-- [ ] Namen der Kommentierenden anzeigen
-- [ ] Like- und Unlike-Funktion umsetzen
-- [ ] Neue Kommentare hinzufügen
-- [ ] Darstellung und Bedienbarkeit weiter gestalten und testen
-- [ ] Optional: Änderungen mit `localStorage` speichern
+Die Anwendung enthält neun Bücher aus den Bereichen Logistik, Management, Aviation und Projektmanagement.
 
-## Verwendete Technik
+Die Buchtitel, Autoren und vorhandenen Kommentare sind frei erfundene Beispieldaten.
 
-- HTML und CSS
+Die Daten liegen in einem JavaScript-Array in der Datei `db.js`.
+
+## Aktueller Entwicklungsstand
+
+- [x] Projektstruktur angelegt
+- [x] HTML, CSS und JavaScript miteinander verbunden
+- [x] Bootstrap eingebunden
+- [x] Alle neun Bücher dynamisch anzeigen
+- [x] Buchtitel, Autor, Genre, Jahr und Preis ausgeben
+- [x] Vorhandene Kommentare mit Namen anzeigen
+- [x] Like- und Unlike-Funktion umgesetzt
+- [x] Like-Anzahl direkt aktualisieren
+- [x] Neue Kommentare hinzufügen
+- [x] Kommentare dem richtigen Buch zuordnen
+- [x] Eingabefelder nach dem Hinzufügen leeren
+- [x] Leere Kommentare verhindern
+- [x] Nur die betroffenen Bereiche der Webseite aktualisieren
+- [ ] Eigenes CSS und Layout gestalten
+- [ ] Responsive Darstellung umsetzen
+- [ ] Abschließende Funktionstests durchführen
+- [ ] Optional: Daten mit `localStorage` speichern
+
+## Verwendete Technologien
+
+- HTML5
+- CSS3
 - JavaScript
-- Bootstrap 5.3.9 (über CDN eingebunden)
+- Bootstrap 5.3.9
+- Git und GitHub
+- Visual Studio Code
 
-## Projektdateien
+## Projektstruktur
 
-| Datei        | Aufgabe                                                             |
-| ------------ | ------------------------------------------------------------------- |
-| `index.html` | Grundstruktur der Webseite und Einbindung der Dateien               |
-| `db.js`      | Array `books` mit den Buchdaten und Kommentaren                     |
-| `script.js`  | Funktionen zum Erstellen der Buchkarten und Anzeigen der Kommentare |
-| `style.css`  | Eigene CSS-Gestaltung (bisher noch leer)                            |
+```text
+myBookstore/
+├── index.html
+├── db.js
+├── script.js
+├── style.css
+└── readme.md
+```
+
+## Funktionsweise
+
+**Bücher anzeigen**
+
+Die Funktion `renderBooks()` durchläuft das Array `books` und erstellt über `getBookTemplate(index)` die einzelnen Buchkarten.
+
+**Kommentare anzeigen**
+
+Mit `renderComments(index)` werden die vorhandenen Kommentare eines Buchs ausgelesen und in den passenden HTML-Container eingefügt.
+
+**Like-Funktion**
+
+Die Funktion `toggleLike(index)` verändert die Like-Anzahl und den Zustand `liked` des ausgewählten Buchs. Anschließend werden die Like-Anzeige und die Button-Beschriftung aktualisiert.
+
+**Neue Kommentare hinzufügen**
+
+Über `addComment(index)` werden der eingegebene Name und Kommentartext ausgelesen, geprüft und als neues Objekt zum Kommentar-Array des entsprechenden Buchs hinzugefügt.
+
+Danach wird nur der betreffende Kommentar-Bereich aktualisiert und die Eingabefelder werden geleert.
 
 ## Projekt starten
 
-1. Projektordner in VS Code öffnen.
-2. `index.html` mit Live Server starten.
-3. Im Browser die Buchkarten und Kommentare prüfen.
+1. Projektordner in Visual Studio Code öffnen.
+2. Die Datei `index.html` über Live Server starten.
+3. Die Buchübersicht im Browser öffnen.
+4. Like-Buttons und Kommentarfunktion testen.
 
-## So funktioniert der aktuelle Code
+## Nächste Schritte
 
-`renderBooks()` geht mit einer `for`-Schleife durch das Bücher-Array. `getBookTemplate(index)` erstellt die HTML-Vorlage für die jeweilige Buchkarte.
+Die grundlegenden JavaScript-Funktionen sind umgesetzt.
 
-Danach wird für jedes Buch `renderComments(index)` aufgerufen. Diese Funktion liest das passende `comments`-Array aus und fügt die vorhandenen Kommentartexte in den jeweiligen HTML-Container ein. Bücher ohne Kommentare bleiben leer.
+Als Nächstes möchte ich die Darstellung mit eigenem CSS verbessern, das Layout für verschiedene Bildschirmgrößen anpassen und anschließend die gesamte Anwendung testen.
 
-Die Like-Funktion, das Hinzufügen neuer Kommentare und das Speichern sind noch nicht umgesetzt.
+Eine dauerhafte Speicherung über `localStorage` ist als mögliche Erweiterung vorgesehen.
+
+**Hinweis:** Aktuell werden Änderungen nur während der laufenden Sitzung im JavaScript-Array gehalten. Nach einem Neuladen der Webseite werden die ursprünglichen Daten aus `db.js` verwendet.
