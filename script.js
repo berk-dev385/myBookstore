@@ -14,14 +14,31 @@ function getBookTemplate(index) {
 
   <div class="card mb-3" >
   <div class="card-body" >  
-    <h2>${books[index].name}</h2> 
-    <p>Autor: ${books[index].author}</p>     
-    <p>Genre: ${books[index].genre}</p>
-    <p>Jahr: ${books[index].publishedYear}</p>
-    <p>Preis: ${books[index].price.toFixed(2)} €</p>
-    <p id="likes_${index}">Likes: ${books[index].likes}</p>
-    <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})">${books[index].liked ? "Unlike" : "Like"}</button>
-    <div id="comments_${index}"></div>
+
+    <header class="book-header">
+        <h2>${books[index].name}</h2>
+    </header>
+
+    <img src="assets/img/book-0${index + 1}.webp" alt="Cover: ${books[index].name}" width="160" height="240" loading="lazy">
+
+    <div class="book-info">
+        <p>Autor: ${books[index].author}</p>     
+        <p>Genre: ${books[index].genre}</p>
+        <p>Jahr: ${books[index].publishedYear}</p>
+    </div>
+
+    <div class="book-actions">
+        <p>Preis: ${books[index].price.toFixed(2)} €</p>
+        <p id="likes_${index}">Likes: ${books[index].likes}</p>
+        <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})" aria-label="${books[index].liked ? "Unlike" : "Like"}">
+        <img id="heart_icon_${index}" src="assets/icon/${books[index].liked ? "heart-filled.png" : "heart-outline.png"}" alt="" width="24" height="24">
+</button>
+    </div>
+
+    <section class="book-comments">
+        <h3>Kommentare</h3>
+        <div id="comments_${index}" class="comments-list"></div>
+    </section>
 
     <input type="text" id="comment_name_${index}" class="form-control mb-2" placeholder="Dein Name">
     <textarea id="comment_text_${index}" class="form-control mb-2" placeholder="Dein Kommentar"></textarea>
@@ -62,12 +79,16 @@ function toggleLike(index) {
   }
   let likesRef = document.getElementById(`likes_${index}`);
   likesRef.textContent = `Likes: ${books[index].likes}`;
+
   let likeButtonRef = document.getElementById(`like_button_${index}`);
+  let heartIconRef = document.getElementById(`heart_icon_${index}`);
 
   if (books[index].liked === true) {
-    likeButtonRef.textContent = "Unlike";
+    heartIconRef.src = "assets/icon/heart-filled.png";
+    likeButtonRef.setAttribute("aria-label", "Unlike");
   } else {
-    likeButtonRef.textContent = "Like";
+    heartIconRef.src = "assets/icon/heart-outline.png";
+    likeButtonRef.setAttribute("aria-label", "Like");
   }
 
   console.log("Likes:", books[index].likes);
@@ -97,10 +118,10 @@ function addComment(index) {
   commentRef.value = "";
 }
 
-// 4. Start rendering books and comments
+// 6. Start rendering books and comments
 renderBooks();
 
-// 5. Render comments for every book
+// 7. Render comments for every book
 for (let index = 0; index < books.length; index++) {
   renderComments(index);
 }
