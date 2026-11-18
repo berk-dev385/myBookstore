@@ -127,24 +127,48 @@ function saveBooks() {
 }
 
 function loadBooks() {
-  let savedBooks = localStorage.getItem("bpg_bookstore_books");
+  try {
+    let savedBooks = localStorage.getItem("bpg_bookstore_books");
 
-  if (savedBooks !== null) {
-    try {
-      let savedData = JSON.parse(savedBooks);
-
-      if (
-        Array.isArray(savedData) &&
-        savedData.length === books.length &&
-        savedData.every((book) => book && Array.isArray(book.comments))
-      ) {
-        books = savedData;
-      } else {
-        console.warn("Ungültige Buchdaten im localStorage.");
-      }
-    } catch (error) {
-      console.error("Fehler beim Laden der Bücher:", error);
+    if (savedBooks === null) {
+      return;
     }
+
+    let savedData = JSON.parse(savedBooks);
+
+    let isValid =
+      Array.isArray(savedData) &&
+      savedData.length === books.length &&
+      savedData.every(
+        (book) =>
+          book !== null &&
+          typeof book === "object" &&
+          typeof book.name === "string" &&
+          typeof book.author === "string" &&
+          Number.isInteger(book.likes) &&
+          book.likes >= 0 &&
+          typeof book.liked === "boolean" &&
+          Number.isFinite(book.price) &&
+          book.price >= 0 &&
+          Number.isInteger(book.publishedYear) &&
+          typeof book.genre === "string" &&
+          Array.isArray(book.comments) &&
+          book.comments.every(
+            (comment) =>
+              comment !== null &&
+              typeof comment === "object" &&
+              typeof comment.name === "string" &&
+              typeof comment.comment === "string",
+          ),
+      );
+
+    if (isValid) {
+      books = savedData;
+    } else {
+      console.warn("Ungültige Buchdaten im localStorage.");
+    }
+  } catch (error) {
+    console.error("Fehler beim Laden der Bücher:", error);
   }
 }
 
