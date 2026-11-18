@@ -1,0 +1,387 @@
+#book_list {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* BPG SlotPlan - original transparent slot fields */
+#book_list .form-control {
+  background: rgba(116, 248, 255, 0.055);
+  color: #f7fbff;
+
+  border: 1px solid rgba(116, 248, 255, 0.46);
+  border-left: 3px solid rgba(116, 248, 255, 0.82);
+  border-radius: 6px;
+
+  box-shadow: none;
+  backdrop-filter: none;
+  caret-color: #58f2ff;
+}
+
+/* Placeholder text */
+#book_list .form-control::placeholder {
+  color: #d7e2ea;
+  opacity: 0.82;
+}
+
+/* Active input field */
+#book_list .form-control:focus {
+  background: rgba(116, 248, 255, 0.055);
+  color: #ffffff;
+
+  border-color: rgba(116, 248, 255, 0.82);
+  border-left-color: #74f8ff;
+
+  outline: none;
+  box-shadow: none;
+}
+
+/* Comment text area */
+#book_list textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 600px) {
+  #book_list {
+    margin: 12px auto;
+    padding: 0 8px;
+  }
+
+  #book_list .card-body {
+    padding: 12px;
+  }
+
+  #book_list .card .book-header h2 {
+    font-size: 1.15rem;
+  }
+}
+
+/* BPG SlotPlan - scrollable comments */
+#book_list .comments-list {
+  max-height: 150px;
+  overflow-y: auto;
+
+  background: rgba(2, 10, 17, 0.45);
+  border: 1px solid #234c61;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* BPG SlotPlan glass design - comments */
+#book_list .book-comments {
+  background: rgba(10, 24, 36, 0.82);
+  border: 1px solid #234c61;
+  border-radius: 12px;
+  padding: 16px;
+  color: #e8f8ff;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Comments heading */
+#book_list .book-comments h3 {
+  color: #58f2ff;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+/* BPG SlotPlan scrollbar */
+#book_list .comments-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+#book_list .comments-list::-webkit-scrollbar-track {
+  background: #091019;
+}
+
+#book_list .comments-list::-webkit-scrollbar-thumb {
+  background: #2c5c71;
+  border-radius: 4px;
+}
+
+#book_list .comments-list::-webkit-scrollbar-thumb:hover {
+  background: #4a8aa6;
+}
+
+/* BPG SlotPlan glass design - book cards */
+#book_list .card {
+  background: rgba(10, 24, 36, 0.78);
+  color: #e8f8ff;
+
+  border: 1px solid #234c61;
+  border-radius: 14px;
+
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(232, 248, 255, 0.08);
+}
+
+/* BPG SlotPlan - book header */
+#book_list .book-header {
+  background: rgba(16, 35, 50, 0.55);
+  border: 1px solid rgba(88, 242, 255, 0.24);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Book title */
+#book_list .book-header h2 {
+  color: #58f2ff;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  text-align: center;
+  margin: 0;
+}
+
+/* BPG SlotPlan - book information */
+#book_list .book-info {
+  background: rgba(16, 35, 50, 0.3);
+  border-left: 2px solid rgba(88, 242, 255, 0.35);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+/* Book information text */
+#book_list .book-info p {
+  color: #91b7c7;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+/* Remove last paragraph spacing */
+#book_list .book-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* BPG SlotPlan - price and like section */
+#book_list .book-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  background: rgba(16, 35, 50, 0.4);
+  border: 1px solid #234c61;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+/* Remove paragraph spacing */
+#book_list .book-actions p {
+  margin-bottom: 0;
+}
+
+/* Price on the left */
+#book_list .book-actions p:first-child {
+  margin-right: auto;
+  color: #58f2ff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* BPG SlotPlan - Like button */
+#book_list .book-actions .btn {
+  background: rgba(88, 242, 255, 0.08);
+  color: #58f2ff;
+  border: 1px solid #58f2ff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Hover effect */
+#book_list .book-actions .btn:hover {
+  background: rgba(88, 242, 255, 0.2);
+  color: #e8f8ff;
+}
+
+/* Keyboard focus */
+#book_list .book-actions .btn:focus-visible {
+  outline: 2px solid #58f2ff;
+  outline-offset: 2px;
+}
+
+/* BPG SlotPlan - book covers */
+#book_list .book-carousel > img {
+  display: block;
+
+  width: 260px;
+  max-width: 100%;
+  height: auto;
+
+  margin: 0 auto 20px;
+
+  border: 1px solid rgba(88, 242, 255, 0.35);
+  border-radius: 10px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* BPG SlotPlan - page background */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #102332 0%, #020a11 65%);
+  color: #e8f8ff;
+}
+
+/* BPG SlotPlan - comment button */
+#book_list .btn-primary {
+  background: rgba(116, 248, 255, 0.055);
+  color: #74f8ff;
+
+  border: 1px solid rgba(116, 248, 255, 0.46);
+  border-left: 3px solid rgba(116, 248, 255, 0.82);
+  border-radius: 6px;
+
+  box-shadow: none;
+  font-weight: 600;
+}
+
+/* Hover effect */
+#book_list .btn-primary:hover {
+  background: rgba(116, 248, 255, 0.12);
+  color: #ffffff;
+
+  border-color: #74f8ff;
+  box-shadow: none;
+}
+
+/* Keyboard focus */
+#book_list .btn-primary:focus-visible {
+  outline: 2px solid #74f8ff;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* BPG SlotPlan - individual comment tiles */
+#book_list .comment-entry {
+  background: rgba(116, 248, 255, 0.055);
+
+  border: 1px solid rgba(116, 248, 255, 0.35);
+  border-left: 3px solid rgba(116, 248, 255, 0.82);
+  border-radius: 6px;
+
+  padding: 12px;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+/* Comment author */
+#book_list .comment-author {
+  display: block;
+  color: #74f8ff;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+/* Comment text */
+#book_list .comment-text {
+  color: #e8f8ff;
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Remove unnecessary spacing at the bottom */
+#book_list .comment-entry:last-child {
+  margin-bottom: 0;
+}
+
+/* BPG Bookstore - Carousel slides */
+#book_list .book-carousel > .carousel-slide:not(.active) {
+  display: none;
+}
+
+/* BPG SlotPlan - Carousel navigation */
+#book_list .book-carousel-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 0 auto 20px;
+}
+
+/* Previous and next buttons */
+#book_list .book-carousel-nav > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 38px;
+  height: 38px;
+  padding: 0;
+
+  background: rgba(116, 248, 255, 0.055);
+  color: #74f8ff;
+  border: 1px solid rgba(116, 248, 255, 0.46);
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+/* Navigation dots container */
+#book_list .book-carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Individual dots */
+#book_list .book-carousel-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+
+  background: rgba(116, 248, 255, 0.2);
+  border: 1px solid rgba(116, 248, 255, 0.46);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+/* Currently selected image */
+#book_list .book-carousel-dot.active {
+  background: #74f8ff;
+  opacity: 1;
+}
+
+/* Arrow hover */
+#book_list .book-carousel-nav > button:hover {
+  background: rgba(116, 248, 255, 0.15);
+  border-color: #74f8ff;
+}
+
+/* Keyboard navigation */
+#book_list .book-carousel-nav button:focus-visible {
+  outline: 2px solid #74f8ff;
+  outline-offset: 3px;
+}
+
+/* BPG Bookstore - Carousel hover zoom */
+#book_list .book-carousel > .carousel-slide.active {
+  transition: transform 0.25s ease;
+  transform-origin: center;
+}
+
+/* Hover zoom for mouse devices */
+@media (hover: hover) and (pointer: fine) {
+  #book_list .book-carousel > .carousel-slide.active:hover {
+    transform: scale(1.19);
+  }
+}

@@ -8,28 +8,35 @@ function renderBooks() {
     bookListRef.innerHTML += getBookTemplate(index);
   }
 }
-// 2. Create HTML template for a single book
-function getBookTemplate(index) {
-  return `
 
-  <div class="card mb-3" >
-  <div class="card-body" >  
-    <h2>${books[index].name}</h2> 
-    <p>Autor: ${books[index].author}</p>     
-    <p>Genre: ${books[index].genre}</p>
-    <p>Jahr: ${books[index].publishedYear}</p>
-    <p>Preis: ${books[index].price.toFixed(2)} €</p>
-    <p id="likes_${index}">Likes: ${books[index].likes}</p>
-    <button type="button" id="like_button_${index}" class="btn btn-outline-primary" onclick="toggleLike(${index})">${books[index].liked ? "Unlike" : "Like"}</button>
-    <div id="comments_${index}"></div>
+function showBookSlide(index, slideIndex) {
+  let carouselRef = document.getElementById(`book-carousel_${index}`);
+  let slides = carouselRef.querySelectorAll(".carousel-slide");
+  let dots = carouselRef.querySelectorAll(".book-carousel-dot");
 
-    <input type="text" id="comment_name_${index}" class="form-control mb-2" placeholder="Dein Name">
-    <textarea id="comment_text_${index}" class="form-control mb-2" placeholder="Dein Kommentar"></textarea>
-    <button type="button" class="btn btn-primary" onclick="addComment(${index})">Kommentar hinzufügen</button>
+  slideIndex = (slideIndex + slides.length) % slides.length;
 
-    </div>
-    </div>
-    `;
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("active");
+    dots[i].classList.remove("active");
+    dots[i].setAttribute("aria-pressed", "false");
+  }
+
+  slides[slideIndex].classList.add("active");
+  dots[slideIndex].classList.add("active");
+  dots[slideIndex].setAttribute("aria-pressed", "true");
+}
+
+function changeBookSlide(index, direction) {
+  let carouselRef = document.getElementById(`book-carousel_${index}`);
+  let slides = carouselRef.querySelectorAll(".carousel-slide");
+
+  for (let i = 0; i < slides.length; i++) {
+    if (slides[i].classList.contains("active")) {
+      showBookSlide(index, i + direction);
+      return;
+    }
+  }
 }
 
 // 3. Find the comments of a single book
@@ -43,9 +50,19 @@ function renderComments(index) {
     commentIndex < books[index].comments.length;
     commentIndex++
   ) {
-    let commentElement = document.createElement("p");
+    let commentElement = document.createElement("div");
+    commentElement.classList.add("comment-entry");
 
-    commentElement.textContent = `${books[index].comments[commentIndex].name}: ${books[index].comments[commentIndex].comment}`;
+    let nameElement = document.createElement("strong");
+    nameElement.classList.add("comment-author");
+    nameElement.textContent = books[index].comments[commentIndex].name;
+
+    let textElement = document.createElement("p");
+    textElement.classList.add("comment-text");
+    textElement.textContent = books[index].comments[commentIndex].comment;
+
+    commentElement.appendChild(nameElement);
+    commentElement.appendChild(textElement);
 
     commentsRef.appendChild(commentElement);
   }
@@ -62,16 +79,22 @@ function toggleLike(index) {
   }
   let likesRef = document.getElementById(`likes_${index}`);
   likesRef.textContent = `Likes: ${books[index].likes}`;
+
   let likeButtonRef = document.getElementById(`like_button_${index}`);
+  let heartIconRef = document.getElementById(`heart_icon_${index}`);
 
   if (books[index].liked === true) {
-    likeButtonRef.textContent = "Unlike";
+    heartIconRef.src = "assets/icon/heart-filled.png";
+    likeButtonRef.setAttribute("aria-label", "Unlike");
   } else {
-    likeButtonRef.textContent = "Like";
+    heartIconRef.src = "assets/icon/heart-outline.png";
+    likeButtonRef.setAttribute("aria-label", "Like");
   }
 
   console.log("Likes:", books[index].likes);
   console.log("Liked:", books[index].liked);
+
+  saveBooks();
 }
 
 // 5. Add a new comment to a book
@@ -95,12 +118,43 @@ function addComment(index) {
 
   nameRef.value = "";
   commentRef.value = "";
+
+  saveBooks();
 }
 
-// 4. Start rendering books and comments
+function saveBooks() {
+  localStorage.setItem("bpg_bookstore_books", JSON.stringify(books));
+}
+
+function loadBooks() {
+  let savedBooks = localStorage.getItem("bpg_bookstore_books");
+
+  if (savedBooks !== null) {
+    try {
+      let savedData = JSON.parse(savedBooks);
+
+      if (
+        Array.isArray(savedData) &&
+        savedData.length === books.length &&
+        savedData.every((book) => book && Array.isArray(book.comments))
+      ) {
+        books = savedData;
+      } else {
+        console.warn("Ungültige Buchdaten im localStorage.");
+      }
+    } catch (error) {
+      console.error("Fehler beim Laden der Bücher:", error);
+    }
+  }
+}
+
+// 6. Load saved books before rendering
+loadBooks();
+
+// 7. Start rendering books and comments
 renderBooks();
 
-// 5. Render comments for every book
+// 8. Render comments for every book
 for (let index = 0; index < books.length; index++) {
   renderComments(index);
 }
