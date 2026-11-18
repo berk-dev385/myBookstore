@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BPG 385-Bookstore</title>
+    <link rel="icon" type="image/png" href="assets/icon/heart-filled.png" />
 
     <!-- Bootstrap CSS, offizielle Version 5.3.9 -->
     <link
@@ -16,6 +17,17 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <div class="site-brand">
+          <span class="site-label">BPG · BERK PROCESS GROUP</span>
+          <h1>385-BOOKSTORE</h1>
+          <p>Wissen, an einem Ort.</p>
+        </div>
+        <a class="site-header-link" href="#book_list">Bücher entdecken ↓</a>
+      </div>
+    </header>
+
     <div id="book_list"></div>
 
     <script src="db.js"></script>

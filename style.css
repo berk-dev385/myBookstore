@@ -385,3 +385,64 @@ body {
     transform: scale(1.19);
   }
 }
+
+/* BPG - Main website header */
+.site-header {
+  background: rgba(10, 24, 36, 0.9);
+  border-bottom: 1px solid rgba(88, 242, 255, 0.35);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Header content and responsive layout */
+.site-header-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Brand label */
+.site-label {
+  color: #74f8ff;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+/* Main website title */
+.site-brand h1 {
+  color: #ffffff;
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 4px 0;
+}
+
+/* Website subtitle */
+.site-brand p {
+  color: #91b7c7;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Header navigation link */
+.site-header-link {
+  display: inline-block;
+  padding: 12px 20px;
+  color: #74f8ff;
+  text-decoration: none;
+  border: 1px solid #58f2ff;
+  border-radius: 8px;
+  background: rgba(88, 242, 255, 0.08);
+  font-weight: 600;
+}
+
+/* Header link hover effect */
+.site-header-link:hover {
+  background: rgba(88, 242, 255, 0.2);
+  color: #ffffff;
+}
