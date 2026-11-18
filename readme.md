@@ -1,43 +1,35 @@
-# Bookstore 385
+# BPG Bookstore 385
 
-Mein Bookstore-Projekt aus dem JavaScript-Modul der Developer Akademie.
+Ein interaktives Bookstore-Projekt aus dem JavaScript-Modul der Developer Akademie.
 
-In diesem Projekt übe ich den Umgang mit JavaScript-Arrays, Objekten, Funktionen, Schleifen und der DOM-Manipulation. Ziel ist es, eine einfache Buchübersicht zu erstellen, in der Bücher angezeigt, geliked und kommentiert werden können.
+Die Anwendung präsentiert neun fiktive Fachbücher aus den Bereichen Logistik, Supply Chain Management, Aviation, Führung und Projektmanagement. Das Projekt verbindet JavaScript-Grundlagen mit einer interaktiven Benutzeroberfläche im BPG-SlotPlan-Design.
 
-## Projektbeschreibung
+## Projektfunktionen
 
-Die Anwendung enthält neun Bücher aus den Bereichen Logistik, Management, Aviation und Projektmanagement.
-
-Die Buchtitel, Autoren und vorhandenen Kommentare sind frei erfundene Beispieldaten.
-
-Die Daten liegen in einem JavaScript-Array in der Datei `db.js`.
-
-## Aktueller Entwicklungsstand
-
-- [x] Projektstruktur angelegt
-- [x] HTML, CSS und JavaScript miteinander verbunden
-- [x] Bootstrap eingebunden
-- [x] Alle neun Bücher dynamisch anzeigen
-- [x] Buchtitel, Autor, Genre, Jahr und Preis ausgeben
-- [x] Vorhandene Kommentare mit Namen anzeigen
-- [x] Like- und Unlike-Funktion umgesetzt
-- [x] Like-Anzahl direkt aktualisieren
-- [x] Neue Kommentare hinzufügen
-- [x] Kommentare dem richtigen Buch zuordnen
-- [x] Eingabefelder nach dem Hinzufügen leeren
+- [x] Neun Bücher dynamisch aus einem JavaScript-Array darstellen
+- [x] Titel, Autor, Genre, Erscheinungsjahr und Preis anzeigen
+- [x] Vier Bilder pro Buch (36 Bilder insgesamt)
+- [x] Unabhängiges Bild-Carousel für jedes Buch
+- [x] Carousel-Navigation mit Pfeilen und vier Navigationspunkten
+- [x] Hover-Zoom für die Buchbilder
+- [x] Like- und Unlike-Funktion mit wechselnden Herz-Icons
+- [x] Vorhandene Kommentare anzeigen
+- [x] Neue Kommentare mit Name und Text hinzufügen
 - [x] Leere Kommentare verhindern
-- [x] Nur die betroffenen Bereiche der Webseite aktualisieren
-- [ ] Eigenes CSS und Layout gestalten
-- [ ] Responsive Darstellung umsetzen
-- [ ] Abschließende Funktionstests durchführen
-- [ ] Optional: Daten mit `localStorage` speichern
+- [x] Kommentare in einzelnen transparenten Kacheln darstellen
+- [x] Likes und Kommentare über `localStorage` speichern
+- [x] Gespeicherte Daten beim Seitenstart wiederherstellen
+- [x] Responsive Darstellung für Smartphone, Tablet und Desktop
+- [x] Funktions- und Responsivtests durchgeführt
+- [x] HTML-Template in eine separate JavaScript-Datei ausgelagert
 
 ## Verwendete Technologien
 
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (Vanilla JS)
 - Bootstrap 5.3.9
+- Browser `localStorage`
 - Git und GitHub
 - Visual Studio Code
 
@@ -49,42 +41,81 @@ myBookstore/
 ├── db.js
 ├── script.js
 ├── style.css
-└── readme.md
+├── readme.md
+├── scripts/
+│   └── templates.js
+└── assets/
+    ├── icon/
+    │   ├── heart-outline.png
+    │   └── heart-filled.png
+    └── img/
+        ├── book-01.webp
+        ├── book-01-page-01.webp
+        ├── book-01-page-02.webp
+        ├── book-01-back.webp
+        └── ... weitere Bilder bis book-09
 ```
 
-## Funktionsweise
+## JavaScript-Architektur
 
-**Bücher anzeigen**
+**`db.js` – Datenbasis**
 
-Die Funktion `renderBooks()` durchläuft das Array `books` und erstellt über `getBookTemplate(index)` die einzelnen Buchkarten.
+Enthält das `books`-Array mit neun Buchobjekten, Buchinformationen, Like-Zuständen und Kommentaren.
 
-**Kommentare anzeigen**
+**`scripts/templates.js` – HTML-Vorlage**
 
-Mit `renderComments(index)` werden die vorhandenen Kommentare eines Buchs ausgelesen und in den passenden HTML-Container eingefügt.
+Die Funktion `getBookTemplate(index)` erzeugt die HTML-Struktur einer Buchkarte mit Bildergalerie, Buchinformationen, Like-Button und Kommentarbereich.
 
-**Like-Funktion**
+**`script.js` – Anwendungslogik**
 
-Die Funktion `toggleLike(index)` verändert die Like-Anzahl und den Zustand `liked` des ausgewählten Buchs. Anschließend werden die Like-Anzeige und die Button-Beschriftung aktualisiert.
+- `renderBooks()` – Buchkarten erzeugen
+- `showBookSlide()` – Gewünschtes Carousel-Bild anzeigen
+- `changeBookSlide()` – Zwischen den Bildern wechseln
+- `renderComments()` – Kommentare eines Buchs darstellen
+- `toggleLike()` – Likes hinzufügen oder entfernen
+- `addComment()` – Neue Kommentare hinzufügen
+- `saveBooks()` – Buchdaten im Browser speichern
+- `loadBooks()` – Gespeicherte Buchdaten laden
 
-**Neue Kommentare hinzufügen**
+Die HTML-Vorlage ist von der Anwendungslogik getrennt.
 
-Über `addComment(index)` werden der eingegebene Name und Kommentartext ausgelesen, geprüft und als neues Objekt zum Kommentar-Array des entsprechenden Buchs hinzugefügt.
+## Design und Responsivität
 
-Danach wird nur der betreffende Kommentar-Bereich aktualisiert und die Eingabefelder werden geleert.
+Die Benutzeroberfläche orientiert sich am BPG SlotPlan:
+
+- Dunkler Hintergrund
+- Halbtransparente Glasflächen
+- Cyanfarbene Konturen und Akzente
+- Transparente Eingabefelder und Kommentar-Kacheln
+- Individuelle Carousel-Navigation
+- Hover-Effekte und responsives Layout
+
+Die Darstellung wurde bei 320 px, 768 px und 1440 px Bildschirmbreite getestet.
+
+## Datenspeicherung
+
+Likes und neu hinzugefügte Kommentare werden als JSON im `localStorage` des Browsers gespeichert.
+
+Beim erneuten Laden der Webseite werden die gespeicherten Daten wiederhergestellt. Sind keine gespeicherten Daten vorhanden, werden die Standardwerte aus `db.js` verwendet.
+
+Die Speicherung erfolgt ausschließlich lokal im jeweiligen Browser. Es gibt keine zentrale Datenbank oder Synchronisierung zwischen verschiedenen Geräten.
 
 ## Projekt starten
 
-1. Projektordner in Visual Studio Code öffnen.
-2. Die Datei `index.html` über Live Server starten.
-3. Die Buchübersicht im Browser öffnen.
-4. Like-Buttons und Kommentarfunktion testen.
+1. Repository herunterladen oder klonen.
+2. Projektordner in Visual Studio Code öffnen.
+3. `index.html` mit Live Server starten.
+4. Die neun Bücher im Browser betrachten.
+5. Carousel, Likes und Kommentare ausprobieren.
 
-## Nächste Schritte
+Eine separate Installation von JavaScript-Paketen ist nicht erforderlich. Bootstrap wird über ein CDN eingebunden.
 
-Die grundlegenden JavaScript-Funktionen sind umgesetzt.
+## Projektstatus
 
-Als Nächstes möchte ich die Darstellung mit eigenem CSS verbessern, das Layout für verschiedene Bildschirmgrößen anpassen und anschließend die gesamte Anwendung testen.
+**Funktionsentwicklung und Carousel abgeschlossen.**
 
-Eine dauerhafte Speicherung über `localStorage` ist als mögliche Erweiterung vorgesehen.
+Die Kernfunktionen, das SlotPlan-Design und die responsive Darstellung wurden getestet. Die abschließende Projektdokumentation und GitHub-Sicherung sind Bestandteil der finalen Übergabe.
 
-**Hinweis:** Aktuell werden Änderungen nur während der laufenden Sitzung im JavaScript-Array gehalten. Nach einem Neuladen der Webseite werden die ursprünglichen Daten aus `db.js` verwendet.
+---
+
+Entwickelt im Rahmen der Full-Stack-Weiterbildung an der Developer Akademie.

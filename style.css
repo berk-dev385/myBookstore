@@ -4,20 +4,6 @@
   padding: 0 16px;
 }
 
-#book_list .card {
-  margin-bottom: 20px;
-  border: 1px solid #dee2e6;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Book titles */
-#book_list .card h2 {
-  font-size: 1.4rem;
-  line-height: 1.3;
-  margin-bottom: 16px;
-}
-
 /* BPG SlotPlan - original transparent slot fields */
 #book_list .form-control {
   background: rgba(116, 248, 255, 0.055);
@@ -67,15 +53,20 @@
     padding: 12px;
   }
 
-  #book_list .card h2 {
+  #book_list .card .book-header h2 {
     font-size: 1.15rem;
   }
 }
 
-/* Scrollable comments */
+/* BPG SlotPlan - scrollable comments */
 #book_list .comments-list {
   max-height: 150px;
   overflow-y: auto;
+
+  background: rgba(2, 10, 17, 0.45);
+  border: 1px solid #234c61;
+  border-radius: 8px;
+  padding: 12px;
 }
 
 /* BPG SlotPlan glass design - comments */
@@ -95,14 +86,6 @@
   color: #58f2ff;
   font-size: 1rem;
   margin-bottom: 12px;
-}
-
-/* Scrollable comments surface */
-#book_list .comments-list {
-  background: rgba(2, 10, 17, 0.45);
-  border: 1px solid #234c61;
-  border-radius: 8px;
-  padding: 12px;
 }
 
 /* BPG SlotPlan scrollbar */
@@ -235,7 +218,7 @@
 }
 
 /* BPG SlotPlan - book covers */
-#book_list .card-body > img {
+#book_list .book-carousel > img {
   display: block;
 
   width: 260px;
@@ -318,4 +301,87 @@ body {
 /* Remove unnecessary spacing at the bottom */
 #book_list .comment-entry:last-child {
   margin-bottom: 0;
+}
+
+/* BPG Bookstore - Carousel slides */
+#book_list .book-carousel > .carousel-slide:not(.active) {
+  display: none;
+}
+
+/* BPG SlotPlan - Carousel navigation */
+#book_list .book-carousel-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 0 auto 20px;
+}
+
+/* Previous and next buttons */
+#book_list .book-carousel-nav > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 38px;
+  height: 38px;
+  padding: 0;
+
+  background: rgba(116, 248, 255, 0.055);
+  color: #74f8ff;
+  border: 1px solid rgba(116, 248, 255, 0.46);
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+/* Navigation dots container */
+#book_list .book-carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Individual dots */
+#book_list .book-carousel-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+
+  background: rgba(116, 248, 255, 0.2);
+  border: 1px solid rgba(116, 248, 255, 0.46);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+/* Currently selected image */
+#book_list .book-carousel-dot.active {
+  background: #74f8ff;
+  opacity: 1;
+}
+
+/* Arrow hover */
+#book_list .book-carousel-nav > button:hover {
+  background: rgba(116, 248, 255, 0.15);
+  border-color: #74f8ff;
+}
+
+/* Keyboard navigation */
+#book_list .book-carousel-nav button:focus-visible {
+  outline: 2px solid #74f8ff;
+  outline-offset: 3px;
+}
+
+/* BPG Bookstore - Carousel hover zoom */
+#book_list .book-carousel > .carousel-slide.active {
+  transition: transform 0.25s ease;
+  transform-origin: center;
+}
+
+/* Hover zoom for mouse devices */
+@media (hover: hover) and (pointer: fine) {
+  #book_list .book-carousel > .carousel-slide.active:hover {
+    transform: scale(1.19);
+  }
 }
