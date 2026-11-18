@@ -60,9 +60,19 @@ function renderComments(index) {
     commentIndex < books[index].comments.length;
     commentIndex++
   ) {
-    let commentElement = document.createElement("p");
+    let commentElement = document.createElement("div");
+    commentElement.classList.add("comment-entry");
 
-    commentElement.textContent = `${books[index].comments[commentIndex].name}: ${books[index].comments[commentIndex].comment}`;
+    let nameElement = document.createElement("strong");
+    nameElement.classList.add("comment-author");
+    nameElement.textContent = books[index].comments[commentIndex].name;
+
+    let textElement = document.createElement("p");
+    textElement.classList.add("comment-text");
+    textElement.textContent = books[index].comments[commentIndex].comment;
+
+    commentElement.appendChild(nameElement);
+    commentElement.appendChild(textElement);
 
     commentsRef.appendChild(commentElement);
   }
@@ -93,6 +103,8 @@ function toggleLike(index) {
 
   console.log("Likes:", books[index].likes);
   console.log("Liked:", books[index].liked);
+
+  saveBooks();
 }
 
 // 5. Add a new comment to a book
@@ -116,12 +128,29 @@ function addComment(index) {
 
   nameRef.value = "";
   commentRef.value = "";
+
+  saveBooks();
 }
 
-// 6. Start rendering books and comments
+function saveBooks() {
+  localStorage.setItem("bpg_bookstore_books", JSON.stringify(books));
+}
+
+function loadBooks() {
+  let savedBooks = localStorage.getItem("bpg_bookstore_books");
+
+  if (savedBooks !== null) {
+    books = JSON.parse(savedBooks);
+  }
+}
+
+// 6. Load saved books before rendering
+loadBooks();
+
+// 7. Start rendering books and comments
 renderBooks();
 
-// 7. Render comments for every book
+// 8. Render comments for every book
 for (let index = 0; index < books.length; index++) {
   renderComments(index);
 }
