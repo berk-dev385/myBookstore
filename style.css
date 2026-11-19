@@ -2,6 +2,9 @@
   max-width: 1000px;
   margin: 24px auto;
   padding: 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 /* BPG - original transparent slot fields */
