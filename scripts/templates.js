@@ -1,14 +1,3 @@
-// Escape special characters for safe HTML output
-function escapeHtml(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-}
-
 // Create a book carousel image
 function getBookSlide(index, safeName, suffix, label, active, loading) {
 
