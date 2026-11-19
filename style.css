@@ -63,7 +63,7 @@
 
 /* BPG - scrollable comments */
 #book_list .comments-list {
-  max-height: 150px;
+  height: 150px;
   overflow-y: auto;
 
   background: rgba(2, 10, 17, 0.45);
