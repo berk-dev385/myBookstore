@@ -111,6 +111,8 @@
 
 /* BPG glass design - book cards */
 #book_list .card {
+  flex: 1 1 280px;
+  min-width: 0;
   background: rgba(10, 24, 36, 0.78);
   color: #e8f8ff;
 
