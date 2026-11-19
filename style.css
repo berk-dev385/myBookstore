@@ -382,7 +382,7 @@ body {
 /* Hover zoom for mouse devices */
 @media (hover: hover) and (pointer: fine) {
   #book_list .book-carousel > .carousel-slide.active:hover {
-    transform: scale(1.19);
+    transform: scale(1.06);
   }
 }
 
