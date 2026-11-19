@@ -150,14 +150,7 @@ function getBookCard(index, safeName, safeAuthor, safeGenre) {
     `;
 }
 
-// Prepare safe book data and generate its HTML
-function getBookTemplate(index) {
 
-    let safeName = escapeHtml(books[index].name);
-    let safeAuthor = escapeHtml(books[index].author);
-    let safeGenre = escapeHtml(books[index].genre);
-    return getBookCard(index, safeName, safeAuthor, safeGenre);
-}
 
 
 
