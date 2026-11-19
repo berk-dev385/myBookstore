@@ -1,14 +1,3 @@
-// Escape special characters for safe HTML output
-function escapeHtml(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-}
-
 // Create a book carousel image
 function getBookSlide(index, safeName, suffix, label, active, loading) {
 
@@ -150,14 +139,7 @@ function getBookCard(index, safeName, safeAuthor, safeGenre) {
     `;
 }
 
-// Prepare safe book data and generate its HTML
-function getBookTemplate(index) {
 
-    let safeName = escapeHtml(books[index].name);
-    let safeAuthor = escapeHtml(books[index].author);
-    let safeGenre = escapeHtml(books[index].genre);
-    return getBookCard(index, safeName, safeAuthor, safeGenre);
-}
 
 
 
